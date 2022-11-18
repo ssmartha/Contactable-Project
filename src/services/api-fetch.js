@@ -1,5 +1,4 @@
-const BASE_URI = "https://contactable-api.herokuapp.com";
-const tokenKey = "contactable_token";
+import { BASE_URI,  tokenKey} from "../../config.js";
 
 export default async function apiFetch(endpoint, { method, headers, body } = {}) {
   const token = sessionStorage.getItem(tokenKey);
