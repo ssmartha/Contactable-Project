@@ -1,4 +1,6 @@
 import apiFetch from "./api-fetch.js";
+import { tokenKey } from "../../config.js";
+
 // const BASE_URI = "https://contactable-api.herokuapp.com";
 // const tokenKey = "contactable_token";
 
@@ -32,11 +34,17 @@ import apiFetch from "./api-fetch.js";
 // }
 
 export async function login(credentials = { email, password }) {
-  return await apiFetch("login", {body: credentials});
+  const {token, ...user} = await apiFetch("login", {body: credentials});
+  sessionStorage.setItem(tokenKey, token);
+
+  return user;
 }
 
 export async function logout() {
-  return await apiFetch("login", {body: credentials});
+  const data = await apiFetch("logout", {method: "DELETE"});
+  sessionStorage.removeItem(tokenKey);
+
+  return data;
 }
 
 
