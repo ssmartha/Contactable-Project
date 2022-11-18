@@ -1,2 +1,2 @@
-export const BASE_URI = "http://localhost:3000";
+export const BASE_URI = "https://contactable-api.herokuapp.com";
 export const tokenKey = "contactable_token";
