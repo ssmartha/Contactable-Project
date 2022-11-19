@@ -1,5 +1,7 @@
 import DOMHandler from "../../dom-handler.js";
 import AddContactPage from "./add-contact-page.js";
+import { logout } from "../services/sessions-service.js";
+import LoginPage from "./login-page.js";
 
 function render(){
     return `
