@@ -1,11 +1,20 @@
 import DOMHandler from "../../dom-handler.js";
 import AddContactPage from "./add-contact-page.js";
 
-function renderIconAdd(){
+function render(){
     return `
-    <div class= "add">
-        <i class="ri-add-fill"></i>
-    </div>
+    <main class="section">
+      <section class="container">
+            <h1 class="heading heading--lg text-center mb-2">Contactable</h1>
+            <a class="text-center block mb-8 js-logout">Logout</a>
+
+
+
+            <div class= "add">
+            <i class="ri-add-fill"></i>
+            </div>
+        </section>
+      </main>
     `
 }
 
@@ -15,16 +24,31 @@ function listenContact(){
     add.addEventListener("click", (event) => {
         event.preventDefault();
         DOMHandler.load(AddContactPage)
-    })
-    
+    }) 
 }
+
+function listenLogout() {
+    const a = document.querySelector(".js-logout");
+  
+    a.addEventListener("click", async (event) => {
+      event.preventDefault();
+  
+      try {
+        await logout();
+        DOMHandler.load(LoginPage);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
 
 const HomePage = {
     toString() {
-        return renderIconAdd()
+        return render()
     },
     addListeners() {
-        listenContact()
+        listenContact();
+        listenLogout()
     }
 }
 
