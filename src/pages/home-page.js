@@ -30,14 +30,15 @@ function render(){
 
 function addContact(contact) {
   return `
-      <li class=“js-contact” data-id=“${contact.id}“>
-          <div class=“js-contact-info”>
-              <img src=“./css/assets/user.png”>
-              <p>${contact.name}</p>
-          </div>
-          <icon data-id=“${contact.id}” class=“ri-star-line js-favorite-icon”></icon>
-      </li>`;
+    <li class="js-contact" data-id="${contact.id}">
+        <div class="js-contact-info">
+            <img src="./css/assets/user.png">
+            <p>${contact.name}</p>
+        </div>
+        <icon data-id="${contact.id}" class="ri-star-line js-favorite-icon"></icon>
+    </li>`;
 }
+
 
 async function addContacts() {
 	const contacts = await listContacts();
