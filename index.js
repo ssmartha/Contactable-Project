@@ -29,7 +29,7 @@ import DOMHandler from "./dom-handler.js";
 import LoginPage from "./src/pages/login-page.js";
 import HomePage from "./src/pages/home-page.js";
 import { tokenKey } from "./config.js"
-import { login } from "./src/services/sessions-service.js"
+//import { login } from "./src/services/sessions-service.js"
 
 //DOMHandler.load(LoginPage);
 
@@ -45,9 +45,9 @@ async function init(){
     }
 }
 
-// init();
+init();
 // sessionStorage.setItem(tokenKey, "invalid")
-login({
-   email: "tita@mail.com",
-   password: "123456",
-}).then(() => init());
+//login({
+//   email: "tita@mail.com",
+//   password: "123456",
+//}).then(() => init());
