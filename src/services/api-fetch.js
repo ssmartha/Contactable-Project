@@ -25,7 +25,6 @@ export default async function apiFetch(endpoint, { method, headers, body } = {})
 
   const response = await fetch(`${BASE_URI}/${endpoint}`, config)
 
-  console.log(response)
 
   let data;
   if (!response.ok) {
