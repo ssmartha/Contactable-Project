@@ -5,37 +5,41 @@ import HomePage from "./home-page.js";
 
 function renderAdd(){
   return `
-  <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
-  ${input({
-    id: "name",
-    placeholder: "Name",
-    name: "name",
-    type: "text"
-  })}
-  ${input({
-    id: "email",
-    placeholder: "john@example.com",
-    type: "email",
-    required: true,
-    name: "email",
-  })}
-  ${input({
-    id: "number",
-    placeholder: "Number",
-    name: "number",
-    type: "number"
-  })}
-  <select name="relation" id="relation">
-  <option disabled selected hidden>Relations</option>
-  <option value="Family">Family</option>
-  <option value="Friends">Friends</option>
-  <option value="Work">Work</option>
-  <option value="Acquaintance">Acquaintance</option>
-  </select>
-  
- 
-  <button type="submit" class="button button--primary">Save</button>
-</form>
+  <main class="section">
+        <section class="conteiner">
+          <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
+          ${input({
+            id: "name",
+            placeholder: "Name",
+            name: "name",
+            type: "text"
+          })}
+          ${input({
+            id: "email",
+            placeholder: "john@example.com",
+            type: "email",
+            required: true,
+            name: "email",
+          })}
+          ${input({
+            id: "number",
+            placeholder: "Number",
+            name: "number",
+            type: "number"
+          })}
+          <select name="relation" id="relation">
+          <option disabled selected hidden>Relations</option>
+          <option value="Family">Family</option>
+          <option value="Friends">Friends</option>
+          <option value="Work">Work</option>
+          <option value="Acquaintance">Acquaintance</option>
+          </select>
+          
+        
+          <button type="submit" class="button button--primary">Save</button>
+          </form>
+        </section>
+  </main>
 `;
 }
 
