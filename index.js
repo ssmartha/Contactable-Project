@@ -45,9 +45,9 @@ async function init(){
     }
 }
 
-init();
-//sessionStorage.setItem(tokenKey, "invalid")
-//login({
-//    email: "loquequieras@gmail.com",
-//    password: "123456",
-//}).then(() => init());
+// init();
+// sessionStorage.setItem(tokenKey, "invalid")
+login({
+   email: "tita@mail.com",
+   password: "123456",
+}).then(() => init());

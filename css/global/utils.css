@@ -120,3 +120,18 @@
 .justify-between {
   justify-content: space-between;
 }
+
+.add{
+  border-radius: 50%;
+  background-color:#E8EAED;
+  height: 56px;
+  width: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add i{
+  scale:2;
+
+}
