@@ -1,15 +1,14 @@
 import { input } from "../components/input.js";
 import DOMHandler from "../../dom-handler.js";
-import HomePage from "./home-page.js";
-import SignUpPage from "./singup-page.js";
-import { login } from "../services/sessions-service.js";
+import LoginPage from "./login-page.js";
+import { createUser } from "../services/user-service.js";
 
 function render() {
     return `
     <main class="section">
         <section class="conteiner">
-            <h1 class="heading heading--lg text-center mb-4">login</h1>
-            <form class="flex flex-column gap-4 mb-4 js-login-form">
+            <h1 class="heading heading--lg text-center mb-4">sign up</h1>
+            <form class="flex flex-column gap-4 mb-4 js-signup-form">
                 ${input({
                     id: "email",
                     label: "email",
@@ -17,7 +16,6 @@ function render() {
                     type: "email",
                     required: true,
                     name: "email",
-                    value: "loquequieras@gmail.com",
                 })}
 
                 ${input({
@@ -27,20 +25,18 @@ function render() {
                     placeholder: "********",
                     type: "password",
                     required: true,
-                    value: "123456",
                 })}
             
-                <button type="submit" class="button button--primary">Login</button>
+                <button type="submit" class="button button--primary">SIGN UP</button>
             </form>
-            <a href="#" class="block text-center js-signup-link">Create account</a>
         </section>
     </main>
   `;
 }
 
 
-function listenSubmitForm() {
-    const form = document.querySelector(".js-login-form");
+function listenSubmitSignUp() {
+    const form = document.querySelector(".js-signup-form");
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -52,29 +48,19 @@ function listenSubmitForm() {
         password: password.value
       };
 
-      const user = await login(credentials);
-      DOMHandler.load(HomePage);
+      const user = await createUser(credentials);
+      DOMHandler.load(LoginPage);
     });
-}
+  }
   
-function listenSignUp() {
-    const form = document.querySelector(".js-signup-link");
 
-    form.addEventListener("click", async (event) => {
-      event.preventDefault();
-
-      DOMHandler.load(SignUpPage);
-    });
-}
-
-const LoginPage = {
+const SignUpPage = {
     toString() {
         return render();
     },
     addListeners() {
-        listenSubmitForm();
-        listenSignUp();
+        listenSubmitSignUp();
     }
 }
 
-export default LoginPage
+export default SignUpPage
