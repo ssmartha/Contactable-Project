@@ -76,6 +76,16 @@ async function listenContact() {
 
 }
 
+// async function listenFavorite() {
+//   await addContacts();
+//   const favorite = document.querySelector(".js-favorite-icon");
+//   favorite.addEventListener("click", (event) => {
+//     event.preventDefault();
+//     console.log("MANDANDO A FAVORITE");
+//     // DOMHandler.load(AddContactPage);
+//   });
+
+// }
 
 function listenLogout() {
   const a = document.querySelector(".js-logout");
@@ -99,6 +109,7 @@ const HomePage = {
   addListeners() {
     listenContact();
     listenLogout();
+    listenFavorite();
   },
 };
 

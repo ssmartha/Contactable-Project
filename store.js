@@ -1,11 +1,11 @@
 import { listContacts } from "./src/services/contacts-service.js";
 
-async function fetchContacts() {
+async function addFavoriteContacts() {
   const contacts = await listContacts();
 
   //this.contacts = contacts;
   //this.favorite = contacts.filter((contact) => contact.favorite);
-  this.favorite = contacts.filter( element => element.favorite);
+  this.favorites = contacts.filter( element => element.favorite);
 
 }
 
@@ -16,7 +16,9 @@ function currentContacts() {
 const STORE = {
   user: null,
   contacts: [],
+  favorites: [],
   currentContact: null,
+  addFavoriteContacts,
   // fetchContacts,
   // currentContacts,
   // deleteContact,
