@@ -9,8 +9,10 @@ export default function ShowContact(parentElement) {
     parent: document.querySelector(parentElement),
     render: function (contact) {
       const html = `
-      <div  class="show-profile">
-          <div class="show-profile-header">
+      <main class="section">
+       
+       <div  class="show-profile">
+           <div class="show-profile-header">
             <h2 class="show-profile-header__title">Contact Detail</h2>
             <a class="text-center block mb-8 js-logout">Logout</a>
           </div>
@@ -28,7 +30,9 @@ export default function ShowContact(parentElement) {
             <a data-id="${contact.id}" href="#delete" class="js-btn-delete-contact">Delete</a>
             <a data-id="${contact.id}" href="#edit" class="js-btn-edit-contact">Edit</a>
           </div>
-        </div>`;
+         </div>
+      
+      </main>`;
       this.parent.innerHTML = html;
       this.addBackListener();
       this.logoutListener();
@@ -62,6 +66,8 @@ export default function ShowContact(parentElement) {
       const btnEdit = this.parent.querySelector(".js-btn-edit-contact");
       btnEdit.addEventListener("click", (e) => {
         e.preventDefault();
+
+
         DOMHandler.load(EditContactPage);
       });
     },

@@ -11,6 +11,10 @@ function render(contactId) {
   return `
       <main class="section">
         <section class="conteiner">
+        <div class="show-profile-header">
+          <h1 class="show-profile-header__title">Edit contact</h1>
+          <a class="text-center block mb-8 js-logout">Logout</a>
+        </div>
           <form class="flex flex-column gap-4 mb-4 js-update-contact-form">
             ${input({
               id: "name",
@@ -39,13 +43,13 @@ function render(contactId) {
               <option value="Friends" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Friends</option>
               <option value="Work" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Work</option>
               <option value="Acquaintance" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Acquaintance</option>
-            </select>
+              </select>
+            </section>
             <div class="flex conteiner">
               <button type="submit" class="button button--primary js-update-contact-form">Save</button>
               <p class="js-cancel block text-center">Cancel</p>
             </div>
           </form>
-        </section>
       </main>
         `;
       }
@@ -77,10 +81,12 @@ function listenSubmitForm() {
   })
 }
 
+
 function listenCancelEdit() {
   const cancel = document.querySelector(".js-cancel")
 
-  cancel.addEventListener("click", async (event) => {
+
+  cancel.addEventListener("click",async (event) => {
     event.preventDefault();
 
     DOMHandler.load(HomePage);
@@ -95,8 +101,9 @@ const EditContactPage = {
     return render(localStorage.getItem("id"));
   },
   addListeners() {
-    listenSubmitForm();
+    listenSubmitForm()  
     listenCancelEdit()
+    HomePage.addListeners()
   }
 }
 

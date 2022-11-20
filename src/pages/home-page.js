@@ -11,8 +11,10 @@ function render() {
   return `
     <main class="section">
       <section class="container">
+          <div class="show-profile-header">
             <h1 class="heading heading--lg text-center mb-2">Contactable</h1>
             <a class="text-center block mb-8 js-logout">Logout</a>
+          </div>
             <div class="js-contact-list">
             <section class="contacts">
                 <div class="js-contacts">
