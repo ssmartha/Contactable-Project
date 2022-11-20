@@ -5,6 +5,7 @@ import LoginPage from "./login-page.js";
 import { listContacts } from "../services/contacts-service.js";
 import ShowContact from "./show_contact.js";
 import STORE from "../../store.js";
+import { favoriteContact } from "../services/contacts-service.js"
 
 function render() {
 
@@ -40,7 +41,7 @@ function addContact(contact) {
               <img src="./css/assets/user.png">
               <p>${contact.name}</p>
           </div>
-          <icon data-id="${contact.id}" class="ri-star-line js-favorite-icon"></icon>
+          <icon data-id="${contact.id}" class="ri-star-line js-favorite-icon ${contact.favorite === true ? "js-favorite-icon-yellow" : "js-favorite-icon-black"}"></icon>
       </li>`;
 }
 
@@ -58,7 +59,8 @@ async function addContacts() {
   const contactsElements = contactList.querySelectorAll(".js-contact");
 
   contactsElements.forEach((contact) => {
-    contact.addEventListener("click", () => {
+    contact.addEventListener("click", (event) => {
+      if (event.target.classList.contains("js-favorite-icon")) return;
       const filterContact = contacts.filter(
         (e) => e.id === +contact.dataset.id
       );
@@ -75,19 +77,45 @@ async function listenContact() {
     event.preventDefault();
     DOMHandler.load(AddContactPage);
   });
-
 }
 
-// async function listenFavorite() {
-//   await addContacts();
-//   const favorite = document.querySelector(".js-favorite-icon");
-//   favorite.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     console.log("MANDANDO A FAVORITE");
-//     // DOMHandler.load(AddContactPage);
-//   });
+async function listenFavorite() {
+  await addContacts();
+  const favorite = document.querySelector(".js-contacts-list");
+  favorite.addEventListener("click", async (event) => {
+    event.preventDefault();
+    if (!event.target.classList.contains("js-favorite-icon")) return;
 
-// }
+    const contact = STORE.contacts.filter(
+      (element) => element.id == event.target.dataset.id
+    );
+
+    try {
+
+      if (contact[0].favorite === true) {
+        contact[0].favorite = false
+      } else {
+        contact[0].favorite = true
+      }
+
+      const newDataForContact = {
+        favorite: contact[0].favorite
+      }
+
+      const updatedContact = await favoriteContact(newDataForContact, event.target.dataset.id);
+      STORE.contacts = await listContacts();
+      STORE.favorites = STORE.contacts.filter( (element) => element.favorite == true);
+      DOMHandler.load(HomePage);
+      // DOMHandler.load(ShowContact(this.id))
+    } catch (error) {
+      console.log(error);
+    }    
+
+    console.log(contact[0].favorite)
+    console.log(STORE.favorites)
+    // DOMHandler.load(AddContactPage);
+  })
+}
 
 function listenLogout() {
   const a = document.querySelector(".js-logout");

@@ -65,6 +65,7 @@ function listenSubmit() {
       relation: relation.value,
     };
     console.log(data)
+    //console.log(user)
     const user = await createContact(data);
     DOMHandler.load(HomePage)
 

@@ -39,8 +39,8 @@ async function init(){
         const token = sessionStorage.getItem(tokenKey)
         if(!token) throw new Error();
 
-        DOMHandler.load(HomePage)
         await STORE.addFavoriteContacts();
+        DOMHandler.load(HomePage)
     } catch (error) {
         sessionStorage.removeItem(tokenKey)
         DOMHandler.load(LoginPage)
