@@ -1,6 +1,7 @@
 import DOMHandler from "../../dom-handler.js";
 import HomePage from "./home-page.js";
 import LoginPage from "./login-page.js";
+import EditContactPage from "./edit-contact-page.js";
 
 export default function ShowContact(parentElement) {
   return {
@@ -30,6 +31,9 @@ export default function ShowContact(parentElement) {
       this.parent.innerHTML = html;
       this.addBackListener();
       this.logoutListener();
+      this.addDeleteContact();
+      this.addEditContact();
+      localStorage.setItem("id", contact.id);
     },
     addBackListener: function () {
       const btnBack = this.parent.querySelector(".js-btn-back");
@@ -56,9 +60,11 @@ export default function ShowContact(parentElement) {
       const btnEdit = this.parent.querySelector(".js-btn-edit-contact");
       btnEdit.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("click edit");
+        console.log(EditContactPage.toString());
+        DOMHandler.load(EditContactPage);
       });
     },
+
   };
 }
 

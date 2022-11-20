@@ -3,8 +3,6 @@ import DOMHandler from "../../dom-handler.js";
 import HomePage from "./home-page.js";
 import SignUpPage from "./singup-page.js";
 import { login } from "../services/sessions-service.js";
-// import EditContact from "./edit_contact.js"
-import EditContactPage from "./edit-contact-page.js";
 
 function render() {
     return `
@@ -55,13 +53,11 @@ function listenSubmitForm() {
       };
 
       const user = await login(credentials);
-        // DOMHandler.load(HomePage);
-      DOMHandler.load(EditContactPage);
+      DOMHandler.load(HomePage);
     });
 
   }
-}
-  
+
 function listenSignUp() {
     const form = document.querySelector(".js-signup-link");
 
