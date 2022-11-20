@@ -63,7 +63,7 @@ async function listenContact(){
 }
 
 
-function listenLogout() {
+export function listenLogout() {
     const a = document.querySelector(".js-logout");
   
     a.addEventListener("click", async (event) => {

@@ -7,6 +7,8 @@ function renderAdd(){
   return `
   <main class="section">
         <section class="conteiner">
+        <h1 class="heading heading--lg text-center mb-2">Contactable</h1>
+        <a class="text-center block mb-8 js-logout">Logout</a>
           <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
           ${input({
             id: "name",
@@ -81,6 +83,8 @@ const AddContactPage = {
   },
   addListeners() {
     listenSubmit()
+    HomePage.addListeners()
+
   }
 }
 
