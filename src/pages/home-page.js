@@ -71,6 +71,7 @@ async function listenContact() {
  
 }
 
+
 function listenLogout() {
   const a = document.querySelector(".js-logout");
 
