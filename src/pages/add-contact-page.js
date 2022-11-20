@@ -3,12 +3,15 @@ import { input } from "../components/input.js";
 import { createContact } from "../services/contacts-service.js";
 import HomePage from "./home-page.js";
 
+
 function renderAdd(){
   return `
   <main class="section">
         <section class="conteiner">
-        <h1 class="heading heading--lg text-center mb-2">Contactable</h1>
-        <a class="text-center block mb-8 js-logout">Logout</a>
+        <div class="show-profile-header">
+          <h1 class="show-profile-header__title">Create new contact</h1>
+          <a class="text-center block mb-8 js-logout">Logout</a>
+        </div>
           <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
           ${input({
             id: "name",
@@ -37,10 +40,12 @@ function renderAdd(){
           <option value="Acquaintance">Acquaintance</option>
           </select>
           
-        
-          <button type="submit" class="button button--primary">Save</button>
+          </section>
+          <div class="flex conteiner">
+            <p class="js-cancel block text-center js-cancel">Cancel</p>
+            <button type="submit" class="button button--primary">Save</button>
+          </div>
           </form>
-        </section>
   </main>
 `;
 }
@@ -75,7 +80,16 @@ function listenSubmit() {
     // }
   });
 }
+  function listenCancelCreate() {
+  const cancel = document.querySelector(".js-cancel")
 
+  cancel.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    DOMHandler(HomePage);
+    // DOMHandler.load(ShowContact(this.id))
+  })
+}
 
 const AddContactPage = {
   toString() {
@@ -84,6 +98,7 @@ const AddContactPage = {
   addListeners() {
     listenSubmit()
     HomePage.addListeners()
+    listenCancelCreate()
 
   }
 }

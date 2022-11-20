@@ -8,7 +8,7 @@ function render() {
     return `
     <main class="section">
         <section class="conteiner">
-            <h1 class="heading heading--lg text-center mb-4">login</h1>
+            <h1 class="heading heading--lg text-center mb-4">Login</h1>
             <form class="flex flex-column gap-4 mb-4 js-login-form">
                 ${input({
                     id: "email",
@@ -32,7 +32,7 @@ function render() {
 
                 <button type="submit" class="button button--primary">Login</button>
             </form>
-            <a href="#" class="block text-center js-signup-link">Create account</a>
+            <a href="#" class="block text-center js-signup-link">Signup</a>
         </section>
     </main>
   `;
