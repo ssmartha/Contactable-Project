@@ -2,11 +2,11 @@ import DOMHandler from "../../dom-handler.js";
 import STORE from "../../store.js";
 import { input } from "../components/input.js";
 import { editContact } from "../services/contacts-service.js"
-import ShowContact from "./show_contact.js";
 import { listContacts } from "../services/contacts-service.js";
+import ShowContact from "./show_contact.js";
 
-function render() {
-  const contact = STORE.contacts.find((contact) => contact.id == this.id);
+function render(contactId) {
+  const contact = STORE.contacts.find( element => element.id == contactId );
 
   return `
       <main class="section">
@@ -69,6 +69,7 @@ function listenSubmitForm() {
 
       const updatedContact = await editContact(newDataForContact, id);
       STORE.contacts = await listContacts();
+      DOMHandler(HomePage);
       // DOMHandler.load(ShowContact(this.id))
     } catch (error) {
       console.log(error);
@@ -82,21 +83,27 @@ function listenCancelEdit() {
   cancel.addEventListener("click", async (event) => {
     event.preventDefault();
 
+    DOMHandler(HomePage);
     // DOMHandler.load(ShowContact(this.id))
   })
 }
 
-// const execRender = render.then(response.)
+
 const EditContactPage = {
-  // localStorage.getItem("id")
-  id : null || 1296,
+  // id : null || localStorage.getItem("id"),
   toString() {
-    return render();
+    return render(localStorage.getItem("id"));
   },
   addListeners() {
     listenSubmitForm();
     listenCancelEdit()
   }
 }
+
+// let contactId = EditContactPage.id
+
+// console.log(id);
+// console.log(EditContactPage.id);
+// console.log(localStorage.getItem("id"));
 
 export default EditContactPage;

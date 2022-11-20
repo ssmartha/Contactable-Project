@@ -4,8 +4,10 @@ import { logout } from "../services/sessions-service.js";
 import LoginPage from "./login-page.js";
 import { listContacts } from "../services/contacts-service.js";
 import ShowContact from "./show_contact.js";
+import STORE from "../../store.js";
 
 function render() {
+
   return `
     <main class="section">
       <section class="container">
@@ -15,7 +17,7 @@ function render() {
             <section class="contacts">
                 <div class="js-contacts">
                     <h4>CONTACTS(<span class= "number_contacts"></span>)</h4>
-                    
+
                 </div>
                 <ul class="js-contacts-list">
                 </ul>
@@ -42,6 +44,10 @@ function addContact(contact) {
 
 async function addContacts() {
   const contacts = await listContacts();
+
+  STORE.contacts = contacts;
+  console.log(STORE);
+
   const contactList = document.querySelector(".js-contacts-list");
   const numberContacts = document.querySelector(".number_contacts")
   contactList.innerHTML = contacts
@@ -68,7 +74,7 @@ async function listenContact() {
     event.preventDefault();
     DOMHandler.load(AddContactPage);
   });
- 
+
 }
 
 
