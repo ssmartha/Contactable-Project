@@ -28,7 +28,8 @@
 import DOMHandler from "./dom-handler.js";
 import LoginPage from "./src/pages/login-page.js";
 import HomePage from "./src/pages/home-page.js";
-import { tokenKey } from "./config.js"
+import { tokenKey } from "./config.js";
+import STORE from "./store.js"
 //import { login } from "./src/services/sessions-service.js"
 
 //DOMHandler.load(LoginPage);
@@ -39,6 +40,7 @@ async function init(){
         if(!token) throw new Error();
 
         DOMHandler.load(HomePage)
+        await STORE.addFavoriteContacts();
     } catch (error) {
         sessionStorage.removeItem(tokenKey)
         DOMHandler.load(LoginPage)
