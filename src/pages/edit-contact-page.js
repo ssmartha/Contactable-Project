@@ -45,8 +45,8 @@ function render(contactId) {
               <option value="Acquaintance" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Acquaintance</option>
               </select>
               <div class="flex conteiner">
-              <button type="submit" class="button button--primary js-update-contact-form">Save</button>
               <p class="js-cancel block text-center">Cancel</p>
+              <button type="submit" class="button button--primary js-update-contact-form">Save</button>
               </div>
               </form>
             </section>
