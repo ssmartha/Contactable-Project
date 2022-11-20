@@ -69,7 +69,7 @@ async function addContacts() {
 }
 
 async function listenContact() {
-  await addContacts();
+  addContacts();
   const add = document.querySelector(".add");
   add.addEventListener("click", (event) => {
     event.preventDefault();
@@ -111,7 +111,7 @@ const HomePage = {
   addListeners() {
     listenContact();
     listenLogout();
-    listenFavorite();
+    // listenFavorite();
   },
 };
 

@@ -44,12 +44,12 @@ function render(contactId) {
               <option value="Work" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Work</option>
               <option value="Acquaintance" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Acquaintance</option>
               </select>
-            </section>
-            <div class="flex conteiner">
+              <div class="flex conteiner">
               <button type="submit" class="button button--primary js-update-contact-form">Save</button>
               <p class="js-cancel block text-center">Cancel</p>
-            </div>
-          </form>
+              </div>
+              </form>
+            </section>
       </main>
         `;
       }
@@ -101,8 +101,8 @@ const EditContactPage = {
     return render(localStorage.getItem("id"));
   },
   addListeners() {
-    listenSubmitForm()  
-    listenCancelEdit()
+    listenSubmitForm(),  
+    listenCancelEdit(),
     HomePage.addListeners()
   }
 }

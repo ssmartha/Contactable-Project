@@ -7,54 +7,54 @@ import HomePage from "./home-page.js";
 function renderAdd(){
   return `
   <main class="section">
-        <section class="conteiner">
-        <div class="show-profile-header">
-          <h1 class="show-profile-header__title">Create new contact</h1>
-          <a class="text-center block mb-8 js-logout">Logout</a>
-        </div>
-          <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
-          ${input({
-            id: "name",
-            placeholder: "Name",
-            name: "name",
-            type: "text"
-          })}
-          ${input({
-            id: "email",
-            placeholder: "john@example.com",
-            type: "email",
-            required: true,
-            name: "email",
-          })}
-          ${input({
-            id: "number",
-            placeholder: "Number",
-            name: "number",
-            type: "number"
-          })}
-          <select name="relation" id="relation">
+    <section class="conteiner">
+      <div class="show-profile-header">
+        <h1 class="show-profile-header__title">Create new contact</h1>
+        <a class="text-center block mb-8 js-logout">Logout</a>
+      </div>
+      <form class="flex flex-column gap-4 mb-4 js-NewContact-form">
+        ${input({
+          id: "name",
+          placeholder: "Name",
+          name: "name",
+          type: "text"
+        })}
+        ${input({
+          id: "email",
+          placeholder: "john@example.com",
+          type: "email",
+          required: true,
+          name: "email",
+        })}
+        ${input({
+          id: "number",
+          placeholder: "Number",
+          name: "number",
+          type: "number"
+        })}
+        <select name="relation" id="relation">
           <option disabled selected hidden>Relations</option>
           <option value="Family">Family</option>
           <option value="Friends">Friends</option>
           <option value="Work">Work</option>
           <option value="Acquaintance">Acquaintance</option>
-          </select>
+        </select>
           
-          </section>
-          <div class="flex conteiner">
-            <p class="js-cancel block text-center js-cancel">Cancel</p>
-            <button type="submit" class="button button--primary">Save</button>
-          </div>
-          </form>
+        <div class="flex conteiner">
+          <p class="js-cancel block text-center">Cancel</p>
+          <button type="submit" class="button button--primary">Save</button>
+        </div>
+      </form>
+    </section>
   </main>
 `;
 }
 
 function listenSubmit() {
   const form = document.querySelector(".js-NewContact-form");
-  console.log(form)
   form.addEventListener("submit", async event => {
     event.preventDefault();
+    console.log(form);
 
     const { email, name, number,relation } = event.target;
 
@@ -80,13 +80,14 @@ function listenSubmit() {
     // }
   });
 }
-  function listenCancelCreate() {
-  const cancel = document.querySelector(".js-cancel")
 
-  cancel.addEventListener("click", async (event) => {
-    event.preventDefault();
-
-    DOMHandler(HomePage);
+function listenCancelCreate() {
+  const canc = document.querySelector(".js-cancel")
+  console.log(canc)
+  canc.addEventListener("click",(event) => {
+    // event.preventDefault();
+    console.log(canc)
+    DOMHandler.load(HomePage);
     // DOMHandler.load(ShowContact(this.id))
   })
 }
