@@ -2,15 +2,9 @@ import { listContacts } from "./src/services/contacts-service.js";
 
 async function addFavoriteContacts() {
   const contacts = await listContacts();
-
   //this.contacts = contacts;
   //this.favorite = contacts.filter((contact) => contact.favorite);
-  this.favorites = contacts.filter( element => element.favorite);
-
-}
-
-function currentContacts() {
-  return this[this.currentTab];
+  this.favorites = contacts.filter( (element) => element.favorite == true);
 }
 
 const STORE = {

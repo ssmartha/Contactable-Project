@@ -39,6 +39,12 @@
   .js-favorite-icon:hover {
     color: #E7E71A;
   }
+  .js-favorite-icon-black {
+    color: #000000;
+  }
+  .js-favorite-icon-yellow {
+    color: #E7E71A;
+  }
   .active {
     color: #E7E71A;
   }
