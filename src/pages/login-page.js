@@ -1,6 +1,7 @@
 import { input } from "../components/input.js";
 import DOMHandler from "../../dom-handler.js";
 import HomePage from "./home-page.js";
+import SignUpPage from "./singup-page.js";
 import { login } from "../services/sessions-service.js";
 // import EditContact from "./edit_contact.js"
 import EditContactPage from "./edit-contact-page.js";
@@ -33,7 +34,7 @@ function render() {
 
                 <button type="submit" class="button button--primary">Login</button>
             </form>
-            <a href="#" class="block text-center js-singup-link">Create account</a>
+            <a href="#" class="block text-center js-signup-link">Create account</a>
         </section>
     </main>
   `;
@@ -57,8 +58,19 @@ function listenSubmitForm() {
         // DOMHandler.load(HomePage);
       DOMHandler.load(EditContactPage);
     });
-  }
 
+  }
+}
+  
+function listenSignUp() {
+    const form = document.querySelector(".js-signup-link");
+
+    form.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      DOMHandler.load(SignUpPage);
+    });
+}
 
 const LoginPage = {
     toString() {
@@ -66,6 +78,7 @@ const LoginPage = {
     },
     addListeners() {
         listenSubmitForm();
+        listenSignUp();
     }
 }
 
