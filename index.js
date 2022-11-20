@@ -39,6 +39,7 @@ async function init(){
         if(!token) throw new Error();
 
         DOMHandler.load(HomePage)
+        await STORE.fetchContacts();
     } catch (error) {
         sessionStorage.removeItem(tokenKey)
         DOMHandler.load(LoginPage)

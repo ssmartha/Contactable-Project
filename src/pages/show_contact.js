@@ -2,6 +2,7 @@ import DOMHandler from "../../dom-handler.js";
 import HomePage from "./home-page.js";
 import LoginPage from "./login-page.js";
 import EditContactPage from "./edit-contact-page.js";
+import { deleteContact } from "../services/contacts-service.js";
 
 export default function ShowContact(parentElement) {
   return {
@@ -53,14 +54,14 @@ export default function ShowContact(parentElement) {
       const btnDelete = this.parent.querySelector(".js-btn-delete-contact");
       btnDelete.addEventListener("click", async (e) => {
         e.preventDefault();
-        console.log("click delete");
+        deleteContact(localStorage.getItem("id"));
+        DOMHandler.load(HomePage);
       });
     },
     addEditContact: function () {
       const btnEdit = this.parent.querySelector(".js-btn-edit-contact");
       btnEdit.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log(EditContactPage.toString());
         DOMHandler.load(EditContactPage);
       });
     },

@@ -46,7 +46,6 @@ async function addContacts() {
   const contacts = await listContacts();
 
   STORE.contacts = contacts;
-  console.log(STORE);
 
   const contactList = document.querySelector(".js-contacts-list");
   const numberContacts = document.querySelector(".number_contacts")

@@ -3,7 +3,7 @@ import STORE from "../../store.js";
 import { input } from "../components/input.js";
 import { editContact } from "../services/contacts-service.js"
 import { listContacts } from "../services/contacts-service.js";
-import ShowContact from "./show_contact.js";
+import HomePage from "./home-page.js";
 
 function render(contactId) {
   const contact = STORE.contacts.find( element => element.id == contactId );
@@ -41,8 +41,8 @@ function render(contactId) {
               <option value="Acquaintance" id="relation" ${contact.relation === "Family" ? "selected" : ""}>Acquaintance</option>
             </select>
             <div class="flex conteiner">
-              <button type="submit" class="button button--primary">Save</button>
-              <p class="js-cancel block text-center js-cancel">Cancel</p>
+              <button type="submit" class="button button--primary js-update-contact-form">Save</button>
+              <p class="js-cancel block text-center">Cancel</p>
             </div>
           </form>
         </section>
@@ -67,9 +67,9 @@ function listenSubmitForm() {
         relation: relation.value,
       }
 
-      const updatedContact = await editContact(newDataForContact, id);
+      const updatedContact = await editContact(newDataForContact, localStorage.getItem("id"));
       STORE.contacts = await listContacts();
-      DOMHandler(HomePage);
+      DOMHandler.load(HomePage);
       // DOMHandler.load(ShowContact(this.id))
     } catch (error) {
       console.log(error);
@@ -78,12 +78,12 @@ function listenSubmitForm() {
 }
 
 function listenCancelEdit() {
-  const cancel = this.parent.querySelector(".js-cancel")
+  const cancel = document.querySelector(".js-cancel")
 
   cancel.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    DOMHandler(HomePage);
+    DOMHandler.load(HomePage);
     // DOMHandler.load(ShowContact(this.id))
   })
 }
