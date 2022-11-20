@@ -1,9 +1,6 @@
-import EditContact from './edit_contact.js';
-import Main from './main.js';
-import { editContacts, deleteContacts } from "./services/contacts_services.js";
-import { login } from "./services/sessions_services.js";
-import Signup from "./signup.js";
-import STORE from './store.js';
+import DOMHandler from "../../dom-handler.js";
+import HomePage from "./home-page.js";
+import LoginPage from "./login-page.js";
 
 export default function ShowContact(parentElement) {
   return {
@@ -13,10 +10,10 @@ export default function ShowContact(parentElement) {
       <div  class="show-profile">
           <div class="show-profile-header">
             <h2 class="show-profile-header__title">Contact Detail</h2>
-            <a href="logout">Logout</a>
+            <a class="text-center block mb-8 js-logout">Logout</a>
           </div>
           <div class="show-profile-body">
-            <img src="./assets/imgs/Rectangle.png" />
+            <img src="./css/assets/user.png" />
             <h3>${contact.name}</h3>
             <p>${contact.relation}</p>
             <ul class="show-profile__info">
@@ -32,43 +29,51 @@ export default function ShowContact(parentElement) {
         </div>`;
       this.parent.innerHTML = html;
       this.addBackListener();
-      this.addDeleteContact();
-      this.addEditContact();
+      this.logoutListener();
     },
-    addBackListener: function() {
-      const btnBack = this.parent.querySelector('.js-btn-back');
-      btnBack.addEventListener('click', (e) => {
+    addBackListener: function () {
+      const btnBack = this.parent.querySelector(".js-btn-back");
+      btnBack.addEventListener("click", (e) => {
         e.preventDefault();
-        const main = Main('.js-content');
-        main.render();
-      })
+        DOMHandler.load(HomePage);
+      });
     },
-    addDeleteContact: function() {
-      const btnDelete = this.parent.querySelector('.js-btn-delete-contact');
-      btnDelete.addEventListener('click', async (e) => {
+    logoutListener: function () {
+      const logout = document.querySelector(".js-logout");
+      logout.addEventListener("click", (event) => {
+        event.preventDefault();
+        DOMHandler.load(LoginPage);
+      });
+    },
+    addDeleteContact: function () {
+      const btnDelete = this.parent.querySelector(".js-btn-delete-contact");
+      btnDelete.addEventListener("click", async (e) => {
         e.preventDefault();
-        try {
-          const idContact = +btnDelete.dataset.id;
-          const response = await deleteContacts(idContact);
-          const main = Main('.js-content');
-          if(response){
-            STORE.contacts = STORE.contacts.filter(contact => contact.id !== idContact);
-            main.render();
-          }
-        } catch(error) {
-          alert(error.message);
-        }
-      })
+        console.log("click delete");
+      });
     },
-    addEditContact: function() {
-      const btnEdit = this.parent.querySelector('.js-btn-edit-contact');
-      btnEdit.addEventListener('click', (e) => {
-        e.preventDefault()
-        //Código del edit
-        const idContact = +btnEdit.dataset.id;
-        const edit = EditContact(".js-content",idContact);
-        edit.render();
-      })
+    addEditContact: function () {
+      const btnEdit = this.parent.querySelector(".js-btn-edit-contact");
+      btnEdit.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("click edit");
+      });
     },
   };
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
