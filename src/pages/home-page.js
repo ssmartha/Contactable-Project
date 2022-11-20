@@ -110,9 +110,6 @@ async function listenFavorite() {
     } catch (error) {
       console.log(error);
     }    
-
-    console.log(contact[0].favorite)
-    console.log(STORE.favorites)
     // DOMHandler.load(AddContactPage);
   })
 }
